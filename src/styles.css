@@ -142,3 +142,44 @@
     color: var(--color-foreground);
   }
 }
+
+/* ===== ContaDivide — Bank-grade split ===== */
+
+@theme {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, sans-serif;
+}
+
+:root {
+  /* Direction tokens */
+  --brand: oklch(0.23 0.08 283);
+  --lilac: oklch(0.62 0.16 285);
+  --lilac-soft: oklch(0.94 0.04 286);
+  --ink: oklch(0.22 0.015 285);
+  --paper: oklch(0.97 0.01 286);
+  --line: oklch(0.92 0.02 286);
+
+  /* Semantic overrides */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--lilac-soft);
+  --secondary-foreground: var(--brand);
+  --muted: var(--lilac-soft);
+  --muted-foreground: oklch(0.5 0.02 285);
+  --accent: var(--lilac-soft);
+  --accent-foreground: var(--brand);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--lilac);
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-lilac: var(--lilac);
+  --color-lilac-soft: var(--lilac-soft);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-line: var(--line);
+}
