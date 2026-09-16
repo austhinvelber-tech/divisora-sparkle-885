@@ -87,8 +87,9 @@ function Index() {
     if (mode === "igual") {
       const shares = splitEven(grand, n);
       participants.forEach((p, i) => {
-        perPerson[p.id] = shares[i];
-        breakdown[p.id].push({ label: "Divisão igual da conta", cents: shares[i] });
+        const s = shares[i] ?? 0;
+        perPerson[p.id] = s;
+        breakdown[p.id]?.push({ label: "Divisão igual da conta", cents: s });
       });
     } else {
       const tipShares = splitEven(tip, n);
@@ -99,13 +100,14 @@ function Index() {
         const pool = consumers.length ? consumers : participants.map((p) => p.id);
         const shares = splitEven(it.price, pool.length);
         pool.forEach((id, i) => {
-          perPerson[id] += shares[i];
-          breakdown[id].push({ label: it.name, cents: shares[i] });
+          perPerson[id] = (perPerson[id] ?? 0) + (shares[i] ?? 0);
+          breakdown[id]?.push({ label: it.name, cents: shares[i] ?? 0 });
         });
       });
       participants.forEach((p, i) => {
-        perPerson[p.id] += tipShares[i];
-        if (tip > 0) breakdown[p.id].push({ label: `Gorjeta (${tipPct}%)`, cents: tipShares[i] });
+        const t = tipShares[i] ?? 0;
+        perPerson[p.id] = (perPerson[p.id] ?? 0) + t;
+        if (tip > 0) breakdown[p.id]?.push({ label: `Gorjeta (${tipPct}%)`, cents: t });
       });
     }
     return { itemsTotal, tip, grand, perPerson, breakdown };
